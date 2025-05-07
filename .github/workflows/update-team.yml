@@ -7,24 +7,67 @@ on:
       - main
   # Allow manual triggering
   workflow_dispatch:
+  # Run daily at midnight
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   update-team:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      # Add permission to read repository collaborators
+      pull-requests: read
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Install GitHub CLI
+        run: |
+          type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+          && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+          && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+          && sudo apt update \
+          && sudo apt install gh -y
+
+      - name: Get outside collaborators
+        id: get-collaborators
+        run: |
+          # Get ONLY outside collaborators using GitHub CLI
+          # The "outside" flag specifically filters for external contributors
+          echo "Fetching outside collaborators..."
+          outside_collaborators=$(gh api repos/${{ github.repository }}/collaborators?affiliation=outside --jq '.[].login' | sort)
+          echo "COLLABORATORS<<EOF" >> $GITHUB_ENV
+          echo "$outside_collaborators" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create TEAM.md
         run: |
           echo "# Team Members" > TEAM.md
           echo "" >> TEAM.md
           echo "This file is automatically maintained by a GitHub Action." >> TEAM.md
+          echo "Last updated: $(date)" >> TEAM.md
           echo "" >> TEAM.md
           echo "## External Collaborators" >> TEAM.md
+          echo "" >> TEAM.md
+
+          # Add the actual outside collaborators to the file
+          if [ -n "${{ env.COLLABORATORS }}" ]; then
+            echo "${{ env.COLLABORATORS }}" | while read -r user; do
+              if [ -n "$user" ]; then
+                echo "- [$user](https://github.com/$user)" >> TEAM.md
+              fi
+            done
+          else
+            echo "No external collaborators found." >> TEAM.md
+          fi
+
+          echo "" >> TEAM.md
+          echo "## Request Access Changes" >> TEAM.md
           echo "" >> TEAM.md
           echo "To request changes to repository access:" >> TEAM.md
           echo "1. Open an issue with the title 'Access Request'" >> TEAM.md
