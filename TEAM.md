@@ -1,8 +1,13 @@
 # Team Members
 
 This file is automatically maintained by a GitHub Action.
+Last updated: Wed May  7 14:39:13 UTC 2025
 
 ## External Collaborators
+
+- [slimbanana9001](https://github.com/slimbanana9001)
+
+## Request Access Changes
 
 To request changes to repository access:
 1. Open an issue with the title 'Access Request'
