@@ -1,0 +1,90 @@
+name: Accessibility Audit Request
+description: Request an accessibility audit or test for your website/application
+title: "[Audit/Test Request]: "
+labels: ["request", "test"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Accessibility Audit Request Form
+        Please provide the following information to help us understand your testing needs.
+
+  - type: input
+    id: website-name
+    attributes:
+      label: Website/Application Name
+      description: The name of your website or application to be tested
+      placeholder: e.g., Company Portal, Product Website
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: The URL to be tested (one URL per request)
+      placeholder: https://example.com
+    validations:
+      required: true
+
+  - type: textarea
+    id: login-credentials
+    attributes:
+      label: Login Credentials
+      description: Provide any necessary login details
+      value: |
+        **Username:** 
+        **Password:**
+    validations:
+      required: false
+
+  - type: textarea
+    id: access-instructions
+    attributes:
+      label: Other Access Instructions
+      description: Any special instructions for accessing protected areas or features
+      placeholder: e.g., "After login, navigate to Admin Panel > Settings to access the feature"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Audit Scope
+      description: What is the scope of this audit request?
+      options:
+        - Full site audit
+        - Specific pages/sections
+        - Individual UI component
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope-details
+    attributes:
+      label: Scope Details
+      description: If not a full site audit, please specify which sections or components to test
+      placeholder: e.g., "Checkout flow", "New account registration form", or "Everything but not the Header and Footer"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: breakpoints
+    attributes:
+      label: Which breakpoints do you need tested?
+      description: You may select more than one.
+      options:
+        - label: Desktop
+        - label: Tablet
+        - label: Mobile
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Any other relevant information about your audit request
+      placeholder: "For the checkout flow, use this test/internal credit card: **** **** **** **** | ***"
+    validations:
+      required: false

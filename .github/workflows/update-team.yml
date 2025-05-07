@@ -1,0 +1,39 @@
+name: Update Team List
+
+on:
+  # Run on push to main
+  push:
+    branches:
+      - main
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  update-team:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create TEAM.md
+        run: |
+          echo "# Team Members" > TEAM.md
+          echo "" >> TEAM.md
+          echo "This file is automatically maintained by a GitHub Action." >> TEAM.md
+          echo "" >> TEAM.md
+          echo "## External Collaborators" >> TEAM.md
+          echo "" >> TEAM.md
+          echo "To request changes to repository access:" >> TEAM.md
+          echo "1. Open an issue with the title 'Access Request'" >> TEAM.md
+          echo "2. Include GitHub usernames to add/remove" >> TEAM.md
+          echo "3. Provide a reason for the change" >> TEAM.md
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add TEAM.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update team list" && git push)

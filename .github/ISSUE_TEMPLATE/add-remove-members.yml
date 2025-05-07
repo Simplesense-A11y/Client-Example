@@ -1,0 +1,44 @@
+name: Add or Remove Repository Members
+description: Request to add or remove members from this repository
+title: "[Add/Remove Members]: "
+labels: ["request", "add-remove members"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Repository Member Management
+        Use this form to add or remove members from this repository.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Add Members
+
+  - type: textarea
+    id: add-members
+    attributes:
+      label: Members to Add
+      description: List all members you want to add (GitHub username or email address, and name)
+      placeholder: |
+        - @janedoe: Jane Doe (jane.doe@example.com)
+        - @johnsmith: John Smith (john.smith@example.com)
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Remove Members
+
+  - type: textarea
+    id: remove-members
+    attributes:
+      label: Members to Remove
+      description: List all GitHub usernames you want to remove
+      placeholder: |
+        - @alexj: Alex Johnson (alex.johnson@example.com)
+        - @samwilson: Sam Wilson (sam.wilson@example.com)
+    validations:
+      required: false

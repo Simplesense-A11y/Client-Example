@@ -1,0 +1,61 @@
+name: Design Accessibility Review Request
+description: Request an accessibility review for your design files and prototypes
+title: "[Design Review Request]: "
+labels: ["request", "design review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Design Accessibility Review Request
+        Please provide the following information to help us evaluate your designs.
+
+  - type: input
+    id: project-name
+    attributes:
+      label: Project Name
+      description: The name of the product, feature, or component to be reviewed
+      placeholder: e.g., Checkout Redesign, Customer Dashboard, Mobile App Navigation
+    validations:
+      required: true
+
+  - type: input
+    id: design-file-url
+    attributes:
+      label: Design File URL
+      description: Link to Figma or other design file
+      placeholder: https://figma.com/file/...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Audit Scope
+      description: What is the scope of this audit request?
+      options:
+        - Full file audit
+        - Specific frames/pages/sections
+        - Individual UI component
+        - Other (please explain in Scope Details)
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope-details
+    attributes:
+      label: Scope Details
+      description: If not a full site audit, please specify which specific frames, sections, or components to test
+      placeholder: "e.g., 'Frame titled: Checkout flow', 'New account registration form', or 'Everything but not the Header and Footer'"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Any other relevant information about your design review request
+      placeholder: "We're not sure what the tab order should be for the checkout flow..."
+    validations:
+      required: false

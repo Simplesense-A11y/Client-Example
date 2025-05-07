@@ -1,0 +1,30 @@
+name: Accessibility Question
+description: Submit a general accessibility question or consultation request
+title: "[Accessibility Question]: "
+labels: ["request", "question"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Accessibility Question Form
+        Use this form to ask general questions about accessibility or request guidance on specific accessibility challenges.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Please describe your accessibility question or challenge in detail
+      placeholder: "I'm trying to understand how to make our custom dropdown menu accessible for screen reader users..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Any other information that might help us provide better assistance, like links, files, etc.
+      placeholder: "You can view the component we're talking about here..."
+    validations:
+      required: false
