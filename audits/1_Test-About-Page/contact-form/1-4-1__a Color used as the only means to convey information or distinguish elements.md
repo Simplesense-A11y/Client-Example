@@ -14,13 +14,19 @@ Color is being used as the only visual means of conveying information, indicatin
 
 <!-- Textual description of affected element's or component's location, state, etc. and screenshots-->
 
+All input fields when in error
+
 ### Element Selector
 
 <!-- CSS or JS selector -->
 
+`#fname`
+
 ### Steps to Reproduce
 
 <!-- Steps required to reproduce the bug -->
+
+Submit the form with empty input values
 
 ---
 
@@ -80,6 +86,8 @@ html
 ## Notes
 
 <!-- Notes, if any -->
+
+This applies to all input fields on the page 
 
 ---
 
