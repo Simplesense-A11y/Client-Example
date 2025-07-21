@@ -14,9 +14,15 @@ Decorative elements are not properly hidden from assistive technology, causing u
 
 <!-- Textual description of affected element's or component's location, state, etc. and screenshots-->
 
+The only image in the section
+
 ### Element Selector
 
 <!-- CSS or JS selector -->
+
+```css
+.section.hero
+```
 
 ### Steps to Reproduce
 

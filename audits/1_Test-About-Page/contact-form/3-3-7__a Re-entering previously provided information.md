@@ -16,9 +16,15 @@ Forms that require users to re-enter information they've already provided earlie
 
 <!-- Textual description of affected element's or component's location, state, etc. and screenshots-->
 
+The user has already entered this information earlier in the sign-in flow
+
 ### Element Selector
 
 <!-- CSS or JS selector -->
+
+```css
+.container .form.contact
+```
 
 ### Steps to Reproduce
 

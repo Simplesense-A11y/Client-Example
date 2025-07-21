@@ -14,13 +14,21 @@ Form controls without programmatically associated labels prevent screen reader u
 
 <!-- Textual description of affected element's or component's location, state, etc. and screenshots-->
 
+All inputs within the contact form
+
 ### Element Selector
 
 <!-- CSS or JS selector -->
 
+```css
+.container .form.contact
+```
+
 ### Steps to Reproduce
 
 <!-- Steps required to reproduce the bug -->
+
+n/a
 
 ---
 
