@@ -1,4 +1,4 @@
-# Dromena.dev Accessibility Testing
+# Simple Sense Accessibility Testing
 
 Welcome to your accessibility testing repository. This document explains how to effectively use this repository to submit and track accessibility testing requests how to locate and understand test findings.
 
